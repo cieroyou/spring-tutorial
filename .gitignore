@@ -37,3 +37,4 @@ out/
 .vscode/
 
 /mysql
+/grpc/grpc-common/**/generated

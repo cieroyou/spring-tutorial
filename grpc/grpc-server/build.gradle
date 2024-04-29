@@ -1,0 +1,45 @@
+buildscript {
+    ext {
+        protobufVersion = '3.25.1'
+        protobufPluginVersion = '0.9.4'
+//        grpcVersion = '1.62.2'
+    }
+}
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.1.4'
+    id 'io.spring.dependency-management' version '1.1.4'
+}
+
+
+group = 'com.sera.tutorial.spring.grpc-consumer'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    sourceCompatibility = '17'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+
+//    implementation project(':grpc-common')
+    implementation project(':grpc:grpc-common')
+
+//    runtimeOnly "io.grpc:grpc-netty-shaded:${grpcVersion}"
+//    implementation "io.grpc:grpc-services:${grpcVersion}"
+
+    implementation 'net.devh:grpc-server-spring-boot-starter:3.0.0.RELEASE'
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}

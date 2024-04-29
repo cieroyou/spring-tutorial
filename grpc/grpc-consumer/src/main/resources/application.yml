@@ -1,0 +1,21 @@
+grpc:
+  client:
+    hello:
+      address: localhost:9090
+      negotiation-type: plaintext
+    upload:
+      address: static://localhost:9090
+      negotiation-type: plaintext
+    trainimage:
+      address: static://10.0.2.66:80
+      negotiation-type: plaintext
+      max-inbound-message-size: 100MB
+
+server:
+  port: 8010
+root-path: /Users/lydia/Developments/opt
+
+spring:
+  #  jackson.property-naming-strategy: SNAKE_CASE
+  servlet.multipart.max-file-size: 100MB
+  servlet.multipart.max-request-size: 100MB

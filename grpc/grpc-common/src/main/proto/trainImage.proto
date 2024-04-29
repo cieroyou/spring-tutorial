@@ -1,0 +1,75 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.sera.tutorial.spring.grpc.trainimage";
+
+package trainImage;
+
+// The greeting service definition.
+service TrainImage {
+  // Sends a greeting
+  //rpc SayHello (HelloRequest) returns (HelloReply);
+
+  rpc SayHello (HelloRequest) returns (HelloReply) {}
+
+  rpc SayHelloNewMethod (RequestBodyTest) returns (HelloReply) {}
+
+  rpc UploadImage (UploadImageRequest) returns (UploadImageReply) {}
+
+  rpc TrainImage (TrainImageRequest) returns (TrainImageResponse) {}
+
+}
+// The request message containing the user's name.
+message HelloRequest {
+  string name = 1;
+}
+
+message RequestBodyTest {
+  string name = 1;
+  string image = 2;
+}
+
+message ResponseBodyTest {
+  string name = 1;
+  string image = 2;
+}
+
+// The response message containing the greetings.
+message HelloReply {
+  string message = 1;
+}
+
+
+message UploadImageRequest {
+  // Assume the image is sent as a Base64-encoded string.
+  string imageName = 1;
+  string imageBase64 = 2;
+}
+
+// Define a response message for the upload result.
+message UploadImageReply {
+  string originalName = 1;
+  string imageBase64 = 2;
+}
+
+// SaveImageRequest defines the request format for saving an image
+message TrainImageRequest  {
+  string imageName = 1;
+  bytes image = 2;
+}
+
+// SaveImageReply defines the response format for the SaveImage operation
+message TrainImageResponse  {
+  Status status = 1;
+  string message = 2;
+  double imageQuality = 3;
+  bytes  mapImage = 4;
+  bytes  thumbImage = 5;
+}
+
+enum Status {
+  UNKNOWN = 0;
+  SUCCESS = 1;
+  FAILED = 2; // 정의되지 않은 에러발생시
+  //IMAGE_DATA_ERROR = 3; 이후에 추가되면 상세 에러
+}
