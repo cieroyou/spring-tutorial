@@ -1,0 +1,21 @@
+spring:
+#  config:
+#    activate:
+#      on-profile: local
+  jpa:
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    password: 1234
+    url: jdbc:mysql://localhost:3306/sera-tutorial?useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC&allowPublicKeyRetrieval=true&rewriteBatchedStatements=true
+    username: sera-tutorial
+    jpa:
+      database: mysql
+      hibernate:
+        ddl-auto: create
+      properties:
+        hibernate:
+          format_sql: true
+      show-sql: true
