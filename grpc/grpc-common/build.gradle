@@ -1,6 +1,5 @@
 buildscript {
     ext {
-//        protobufVersion = '4.26.0'
         protobufVersion = '3.25.1'
         protobufPluginVersion = '0.9.4'
         grpcVersion = '1.60.1'
@@ -21,6 +20,7 @@ repositories {
 dependencies {
     implementation "io.grpc:grpc-protobuf:${grpcVersion}"
     implementation "io.grpc:grpc-stub:${grpcVersion}"
+    implementation "io.grpc:grpc-testing:${grpcVersion}"
 
     // examples/advanced need this for JsonFormat
     implementation "com.google.protobuf:protobuf-java-util:${protobufVersion}"
@@ -51,4 +51,19 @@ protobuf {
 
 test {
     useJUnitPlatform()
+}
+
+
+jar {
+    enabled = true
+    archiveFileName = "grpc-common.jar"
+    manifest {
+        attributes(
+                'Main-Class': 'com.sera.tutorial.spring.grpc.common.GrpcCommonApplication'
+        )
+    }
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 }

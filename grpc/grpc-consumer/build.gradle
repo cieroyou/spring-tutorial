@@ -16,7 +16,7 @@ group = 'com.sera.tutorial.spring.grpc-consumer'
 version = '0.0.1-SNAPSHOT'
 
 java {
-    sourceCompatibility = '17'
+    sourceCompatibility = '21'
 }
 
 repositories {
@@ -28,16 +28,23 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
 
     implementation project(':grpc:grpc-common')
-//    runtimeOnly "io.grpc:grpc-netty-shaded:${grpcVersion}"
-//    implementation "io.grpc:grpc-services:${grpcVersion}"
-//    implementation 'com.google.guava:guava:31.0.1-jre'
+
     implementation 'net.devh:grpc-client-spring-boot-starter:3.0.0.RELEASE'
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
-
+project(':grpc:grpc-common') {
+    bootJar {
+        enabled = false
+    }
+    jar {
+        enabled = true
+    }
+}
+bootJar { enabled = true }
+jar { enabled = false }
 tasks.named('test') {
     useJUnitPlatform()
 }
