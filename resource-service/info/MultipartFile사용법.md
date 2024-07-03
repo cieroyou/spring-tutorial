@@ -14,26 +14,18 @@
 
 # application.yml
 
-```java
-#Maximum file
-size allowed
+```yaml
 spring.servlet.multipart:
-enabled:true
-max-file-size:10000MB
-  #
-Maximum request
-size allowed
-max-request-size:10000MB
-  #
-Location where
-the files
-will be
-stored temporarily
-location:/Users/temp/uploads
+  enabled:true
+  #Maximum file size allowed
+  max-file-size:10000MB
+  #Maximum request size allowed
+  max-request-size:10000MB
+  #Location where the files will be stored temporarily
+  location:/Users/temp/uploads
 resource:
-storage:
-local:
-root-path:/Users/uploads
+  storage:
+    local: root-path:/Users/uploads
 ```
 
 - 큰 파일인 경우 spring.servlet.multipart.max-file-size 와 max-request-size 두 개를 설정해줘야 한다.
