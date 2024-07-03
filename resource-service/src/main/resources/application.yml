@@ -1,0 +1,14 @@
+# Maximum file size allowed
+spring.servlet.multipart:
+  enabled: true
+  max-file-size: 10000MB
+  # Maximum request size allowed
+  max-request-size: 10000MB
+  # Location where the files will be stored temporarily
+  location: /Users/lydia/Developments/sera/resource-service/temp/uploads
+resource:
+  storage:
+    local:
+      root-path: /Users/lydia/Developments/sera/resource-service/uploads
+server:
+  port: 8085
