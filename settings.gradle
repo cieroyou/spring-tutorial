@@ -8,4 +8,6 @@ include 'grpc:grpc-server'
 findProject(':grpc:grpc-server')?.name = 'grpc-server'
 include 'jpa-tutorial'
 include 'resource-service'
+include 'mqtt-tutorial'
+include 'netty-socket'
 
