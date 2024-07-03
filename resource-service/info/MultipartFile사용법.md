@@ -28,8 +28,8 @@ resource:
     local: root-path:/Users/uploads
 ```
 
-- 큰 파일인 경우 spring.servlet.multipart.max-file-size 와 max-request-size 두 개를 설정해줘야 한다.
-- spring.servlet.multipart.location 은 servlet이 자체적으로 임시로 파일을 생성하는 위치이고, 실제 파일이 저장되는 곳에 저장이 완료되면 임시저장소에서 파일은 자동으로 제거된다.
+- 큰 파일인 경우 `spring.servlet.multipart.max-file-size` 와 `max-request-size` 두 개를 설정해줘야 한다.
+- `spring.servlet.multipart.location` 은 servlet이 자체적으로 임시로 파일을 생성하는 위치이고, 실제 파일이 저장되는 곳에 저장이 완료되면 임시저장소에서 파일은 자동으로 제거된다.
 
 # 코드
 
