@@ -73,7 +73,7 @@ public class ResourceController {
 - spring.servlet.multipart.location 으로 설정한 디렉토리 위치에 업로드 요청한 파일이 임시적로 생성이 되면 다음과 같이 .tmp 확장자로 파일이 생성된다.
 - 파일 업로드가 모두 완료되면 해당 .tmp 파일은 삭제된다.
 
-![임시저장소에저장된파일](/file/multipartfile_location.png)
+![임시저장소에저장된파일](./file/multipartfile_location.png)
 
 ## 임시저장소 디렉토리 설정으로 가지는 이점
 
