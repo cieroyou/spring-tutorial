@@ -5,12 +5,15 @@ plugins {
 }
 
 group = 'com.sera.tutorial.spring.resource'
-version = '0.0.1-SNAPSHOT'
+version = '1.0.0'
 
 java {
     sourceCompatibility = '21'
 }
 
+jar{
+    enabled = false
+}
 repositories {
     mavenCentral()
 }
@@ -18,15 +21,13 @@ repositories {
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter'
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'me.desair.tus:tus-java-server:1.0.0-3.0'
 
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
-
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-
-    testImplementation 'org.testcontainers:junit-jupiter:1.17.6'  // TC 의존성
 }
 
-tasks.named('test') {
+test {
     useJUnitPlatform()
 }
