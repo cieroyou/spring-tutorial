@@ -1,14 +1,21 @@
 # Maximum file size allowed
 spring.servlet.multipart:
   enabled: true
-  max-file-size: 10000MB
+  max-file-size: -1
   # Maximum request size allowed
-  max-request-size: 10000MB
+  max-request-size: -1
   # Location where the files will be stored temporarily
   location: /Users/lydia/Developments/sera/resource-service/temp/uploads
 resource:
   storage:
     local:
       root-path: /Users/lydia/Developments/sera/resource-service/uploads
+
 server:
-  port: 8085
+  port: 63342
+
+tus:
+#  endpoint: "/files/upload"
+  storage-path: /Users/lydia/Developments/sera/resource-service/uploads
+  # 단위: ms
+  upload-expiration-period: 60000
