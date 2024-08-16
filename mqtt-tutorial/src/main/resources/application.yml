@@ -1,0 +1,4 @@
+mqtt:
+  hostname: localhost
+  port: 1883
+  client-id: ss
