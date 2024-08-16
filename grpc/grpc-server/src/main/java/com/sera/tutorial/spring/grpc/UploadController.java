@@ -1,6 +1,5 @@
 package com.sera.tutorial.spring.grpc;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -9,17 +8,16 @@ import org.springframework.beans.factory.annotation.Value;
 
 import net.devh.boot.grpc.server.service.GrpcService;
 
-import com.google.protobuf.ByteString;
-import com.sera.tutorial.spring.grpc.uploadfile.UploadFileServiceGrpc;
-import com.sera.tutorial.spring.grpc.uploadfile.UploadRequest;
-import com.sera.tutorial.spring.grpc.uploadfile.UploadResponse;
+import com.sera.tutorial.spring.grpc.upload.UploadRequest;
+import com.sera.tutorial.spring.grpc.upload.UploadResponse;
+import com.sera.tutorial.spring.grpc.upload.UploadServiceGrpc;
 
 import io.grpc.stub.StreamObserver;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @GrpcService
-public class UploadController extends UploadFileServiceGrpc.UploadFileServiceImplBase {
+public class UploadController extends UploadServiceGrpc.UploadServiceImplBase {
 	@Value("${root-path}")
 	private String baseDirectory;
 
@@ -34,23 +32,46 @@ public class UploadController extends UploadFileServiceGrpc.UploadFileServiceImp
 		return Paths.get(path, destinationFilename).normalize();
 	}
 
+
+
+
+	// @Override
+	// public void uploadFile(UploadRequest request, StreamObserver<UploadResponse> responseObserver) {
+	// 	// super.uploadFile(request, responseObserver);
+	// 	// UploadResponse response = UploadResponse.newBuilder().setMessage("UploadComplete").build();
+	// 	try (InputStream stream = request.getFile().newInput()) {
+	// 		// Path destinationPath = getDestinationPath("", "testab.png");
+	// 		// // Create the destination directory if it doesn't exist
+	// 		// Files.createDirectories(destinationPath.getParent());
+	// 		// Files.copy(stream, destinationPath);
+	// 		UploadResponse response = UploadResponse.newBuilder().setMap(ByteString.readFrom(stream))
+	// 			.setLearnQuality(1.4f).build();
+	// 		responseObserver.onNext(response);
+	// 		responseObserver.onCompleted();
+	// 		log.info("Server - sayHello");
+	// 	} catch (IOException e) {
+	// 		throw new RuntimeException(e);
+	// 	}
+	// }
+
 	@Override
 	public void uploadFile(UploadRequest request, StreamObserver<UploadResponse> responseObserver) {
-		// super.uploadFile(request, responseObserver);
-		// UploadResponse response = UploadResponse.newBuilder().setMessage("UploadComplete").build();
-		try (InputStream stream = request.getFile().newInput()) {
-			// Path destinationPath = getDestinationPath("", "testab.png");
-			// // Create the destination directory if it doesn't exist
-			// Files.createDirectories(destinationPath.getParent());
-			// Files.copy(stream, destinationPath);
-			UploadResponse response = UploadResponse.newBuilder().setMap(ByteString.readFrom(stream))
-				.setLearnQuality(1.4f).build();
-			responseObserver.onNext(response);
-			responseObserver.onCompleted();
-			log.info("Server - sayHello");
-		} catch (IOException e) {
-			throw new RuntimeException(e);
-		}
+		// try(InputStream stream = request.getFile().newInput()) {
+		// 	UploadResponse response = UploadResponse.newBuilder()
+		// 		.setLearnQuality(1.4f)
+		// 		.setMessage("UploadComplete").build();
+		// 	responseObserver.onNext(response);
+		// 	responseObserver.onCompleted();
+		// 	log.info("Server - UploadCompleted! size: {}", request.getFile().size());
+		// } catch (Exception e) {
+		// 	throw new RuntimeException(e);
+		// }
+		UploadResponse response = UploadResponse.newBuilder()
+			.setLearnQuality(1.4f)
+			.setMessage("UploadComplete").build();
+		responseObserver.onNext(response);
+		responseObserver.onCompleted();
+		log.info("Server - UploadCompleted! size: {}", request.getFile().size());
 
 	}
 }
