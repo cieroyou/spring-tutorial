@@ -1,18 +1,25 @@
 grpc:
   client:
     hello:
-      address: localhost:9090
+      address: localhost:8090
       negotiation-type: plaintext
     upload:
-      address: static://localhost:9090
+      address: static://localhost:8090
       negotiation-type: plaintext
+      max-inbound-message-size: 100MB
     trainimage:
       address: static://10.0.2.66:80
       negotiation-type: plaintext
       max-inbound-message-size: 100MB
 
+upload:
+  address: http://localhost:18080
+  base-url: /api/v1/resource/upload
 server:
-  port: 8010
+  port: 8091
+  tomcat:
+    threads:
+      max: 10
 root-path: /Users/lydia/Developments/opt
 
 spring:
