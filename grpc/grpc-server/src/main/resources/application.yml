@@ -1,4 +1,5 @@
 grpc:
   server:
-    port: 9090
+    port: 8090
+    max-inbound-message-size: 100MB
 root-path: /Users/lydia/Developments/opt
