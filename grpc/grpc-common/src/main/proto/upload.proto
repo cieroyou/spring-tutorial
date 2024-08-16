@@ -1,10 +1,10 @@
 syntax = "proto3";
 
 option java_multiple_files = true;
-option java_package = "com.sera.tutorial.spring.grpc.uploadfile";
+option java_package = "com.sera.tutorial.spring.grpc.upload";
 //option java_outer_classname = "HelloWorldProto";
 
-service UploadFileService {
+service UploadService {
   rpc UploadFile (UploadRequest) returns (UploadResponse) {
   }
 }
@@ -14,6 +14,6 @@ message UploadRequest {
 }
 
 message UploadResponse {
-  bytes map = 1;
+  string message = 1;
   float learnQuality = 2;
 }
