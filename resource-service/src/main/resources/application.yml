@@ -12,7 +12,7 @@ resource:
       root-path: /Users/lydia/Developments/sera/resource-service/uploads
 
 server:
-  port: 63342
+  port: 18080
 
 tus:
 #  endpoint: "/files/upload"
