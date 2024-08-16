@@ -1,4 +1,4 @@
-package org.example;
+package com.sera.tutorial.spring.mqtttutorial;
 
 import org.springframework.stereotype.Component;
 
