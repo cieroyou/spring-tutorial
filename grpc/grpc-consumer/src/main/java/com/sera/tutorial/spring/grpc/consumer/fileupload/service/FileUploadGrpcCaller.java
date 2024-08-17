@@ -22,28 +22,11 @@ public class FileUploadGrpcCaller implements FileUploadRequestCaller {
 	private final static String VIDEO_FILE_NAME = "largefile.mp4";
 	@GrpcClient("upload")
 	UploadFileServiceGrpc.UploadFileServiceBlockingStub blockingStub;
-	// @Override
-	// public String upload(MultipartFile file) throws IOException {
-	// 	UploadResponse response = blockingStub.uploadFile(
-	// 		UploadRequest.newBuilder()
-	// 			.setFirstName(file.getOriginalFilename())
-	// 			.setLastName(file.getOriginalFilename())
-	// 			.build());
-	// 	return response.getMessage();
-	//
-	// 	// try (InputStream inputStream = file.getInputStream()) {
-	// 	// 	UploadResponse response = blockingStub.uploadFile(
-	// 	// 		com.sera.tutorial.spring.grpc.uploadfile.UploadRequest.newBuilder()
-	// 	// 			.setFile(file.getOriginalFilename())
-	// 	// 			// .setFile(ByteString.readFrom(inputStream))
-	// 	// 			.build());
-	// 	// 	float aa = response.getLearnQuality();
-	// 	//
-	// 	// }
-	// 	// return "uploadComplete";
-	// }
+
+
 	@Value("${root-path}")
 	private String baseDirectory;
+
 	private Path getDestinationPath(String destinationPath, String destinationFilename) {
 		// destinationPath 가 null 이면 "" 처리
 		if (destinationPath == null) {
@@ -64,9 +47,9 @@ public class FileUploadGrpcCaller implements FileUploadRequestCaller {
 				com.sera.tutorial.spring.grpc.upload.UploadRequest.newBuilder()
 					.setFile(ByteString.readFrom(inputStream))
 					.build());
-			Path destinationPath = getDestinationPath("", "testabresult.png");
+//			Path destinationPath = getDestinationPath("", "testabresult.png");
 			// Create the destination directory if it doesn't exist
-			Files.createDirectories(destinationPath.getParent());
+//			Files.createDirectories(destinationPath.getParent());
 			// Files.copy(response.getMap().newInput(), destinationPath);
 
 			return response.getMessage();
