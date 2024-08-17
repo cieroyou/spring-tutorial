@@ -6,6 +6,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import com.sera.tutorial.spring.grpc.upload.UploadFileServiceGrpc;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -14,14 +15,13 @@ import net.devh.boot.grpc.client.inject.GrpcClient;
 
 import com.google.protobuf.ByteString;
 import com.sera.tutorial.spring.grpc.upload.UploadResponse;
-import com.sera.tutorial.spring.grpc.upload.UploadServiceGrpc;
 
 @Service
 public class FileUploadGrpcCaller implements FileUploadRequestCaller {
 	private final static String IMAGE_FILE_NAME = "temp.jpg";
 	private final static String VIDEO_FILE_NAME = "largefile.mp4";
 	@GrpcClient("upload")
-	UploadServiceGrpc.UploadServiceBlockingStub blockingStub;
+	UploadFileServiceGrpc.UploadFileServiceBlockingStub blockingStub;
 	// @Override
 	// public String upload(MultipartFile file) throws IOException {
 	// 	UploadResponse response = blockingStub.uploadFile(

@@ -4,7 +4,7 @@ option java_multiple_files = true;
 option java_package = "com.sera.tutorial.spring.grpc.upload";
 //option java_outer_classname = "HelloWorldProto";
 
-service UploadService {
+service UploadFileService {
   rpc UploadFile (UploadRequest) returns (UploadResponse) {
   }
 }
