@@ -10,13 +10,17 @@ import org.springframework.integration.annotation.MessagingGateway;
 import org.springframework.integration.annotation.ServiceActivator;
 import org.springframework.integration.channel.DirectChannel;
 import org.springframework.integration.core.MessageProducer;
+import org.springframework.integration.dsl.IntegrationFlow;
 import org.springframework.integration.mqtt.core.DefaultMqttPahoClientFactory;
 import org.springframework.integration.mqtt.inbound.MqttPahoMessageDrivenChannelAdapter;
 import org.springframework.integration.mqtt.outbound.MqttPahoMessageHandler;
+import org.springframework.integration.mqtt.outbound.Mqttv5PahoMessageHandler;
 import org.springframework.integration.mqtt.support.DefaultPahoMessageConverter;
+import org.springframework.integration.mqtt.support.MqttHeaderMapper;
 import org.springframework.integration.mqtt.support.MqttHeaders;
 import org.springframework.messaging.MessageChannel;
 import org.springframework.messaging.MessageHandler;
+import org.springframework.messaging.MessageHeaders;
 import org.springframework.messaging.handler.annotation.Header;
 import org.springframework.scheduling.annotation.EnableAsync;
 
@@ -106,6 +110,30 @@ public class MqttConfig {
 		messageHandler.setAsync(true);
 		return messageHandler;
 	}
+
+	// @Bean
+	// public IntegrationFlow mqttOutboundFlow() {
+	// 	Mqttv5PahoMessageHandler messageHandler = new Mqttv5PahoMessageHandler(MQTT_URL, "mqttv5SIout");
+	// 	MqttHeaderMapper mqttHeaderMapper = new MqttHeaderMapper();
+	// 	mqttHeaderMapper.setOutboundHeaderNames("some_user_header", MessageHeaders.CONTENT_TYPE);
+	// 	messageHandler.setHeaderMapper(mqttHeaderMapper);
+	// 	messageHandler.setAsync(true);
+	// 	messageHandler.setAsyncEvents(true);
+	// 	messageHandler.setConverter(mqttStringToBytesConverter());
+	//
+	// 	return f -> f.handle(messageHandler);
+	// 	return f -> f.handle(new MqttPahoMessageHandler("tcp://host1:1883", "someMqttClient"));
+	// }
+
+	// fun mqttOutboundFlow() = integrationFlow(MQTT_OUTBOUND_CHANNEL) { // (7)
+	// 	transform<Any> { // (8)
+	// 		when (it) {
+	// 			is SampleMessage -> objectMapper.writeValueAsString(it)
+    //             else -> it
+	// 		}
+	// 	}
+	// 	handle(mqttOutboundMessageHandler()) // (9)
+	// }
 
 	@Bean
 	public MessageChannel mqttOutboundChannel() {

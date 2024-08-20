@@ -5,7 +5,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.sera.tutorial.spring.mqtt.config.MqttConfig;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.sera.tutorial.spring.mqtt.infrastrucrue.MqttPublisher;
+import com.sera.tutorial.spring.mqtt.infrastrucrue.MyMessage;
 
 import lombok.RequiredArgsConstructor;
 
@@ -13,7 +15,8 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/api/v1/publisher")
 @RestController
 public class PublisherController {
-	private final MqttConfig.MyGateway myGateway;
+	private final MqttPublisher mqttPublisher;
+	// private final MqttConfig.MyGateway myGateway;
 
 	// private MqttOutboundGateway mqttOutboundGateway;
 	//
@@ -22,8 +25,9 @@ public class PublisherController {
 	// }
 
 	@PostMapping()
-	public void publish(@RequestBody PublishMessage request) {
+	public void publish(@RequestBody PublishMessage request) throws JsonProcessingException {
 		// myGateway.sendToMqtt(request.message());
-		myGateway.publish(request.topic(), request.message());
+		// myGateway.publish(request.topic(), request.message());
+		mqttPublisher.publish(request.topic(), new MyMessage(request.message(), "messagetype"));
 	}
 }
