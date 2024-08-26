@@ -2,6 +2,7 @@ plugins {
     id 'java'
     id 'org.springframework.boot' version '3.2.1'
     id 'io.spring.dependency-management' version '1.1.4'
+//    id 'org.hibernate.orm' version '6.4.1.Final'
 }
 
 //group = 'com.sera.tutorial.spring.jpa'
@@ -22,19 +23,29 @@ ext {
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter'
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa:'
-    implementation 'org.postgresql:postgresql'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+//    implementation 'io.hypersistence:hypersistence-utils-hibernate-63:3.7.2'
 
-    implementation 'org.springframework.modulith:spring-modulith-starter-core'
+    implementation("org.springframework.retry:spring-retry")
+    implementation("org.springframework:spring-aspects")
+
+
+//    implementation 'org.springframework.boot:spring-boot-starter-data-jpa:'
+    implementation 'org.postgresql:postgresql'
+    implementation 'org.springframework.boot:spring-boot-devtools'
     implementation 'org.springframework.modulith:spring-modulith-runtime'
+    implementation 'org.springframework.modulith:spring-modulith-actuator'
+    implementation 'org.springframework.modulith:spring-modulith-starter-core'
     implementation 'org.springframework.modulith:spring-modulith-starter-jpa'
+
+//    implementation 'org.springframework.modulith:spring-modulith-moments'
 
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.modulith:spring-modulith-starter-test'
-
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testRuntimeOnly 'com.h2database:h2'
+//    implementation group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-hibernate5-jakarta', version: '2.13.1'
 
 }
 
